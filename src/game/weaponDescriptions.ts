@@ -1,0 +1,15 @@
+export const WEAPON_DESCRIPTIONS: Record<string, string> = {
+  Shield: "Negates incoming projectiles and deflects asteroids. Absorbing damage generates 20% HEAT. Hold to activate.",
+  Cannon: "Fires a single high-damage energy bolt.",
+  "Machine Gun": "Rapid-fire stream of light munitions.",
+  Missile: "Lock a target location and launch a guided missile.",
+  Blaster: "Rapid-fire automatic laser blaster. Hold to fire.",
+  Phaser: "Charge and release a devastating beam across the arena.",
+  Ricochet: "Reflects enemy projectiles back at 50% DMG. Absorbing damage generates 25% HEAT. Hold to activate.",
+  IsoSphere: "Absorbs incoming damage, recovering 20% as HP. Absorbing damage generates 35% HEAT.",
+  RegenX: "Absorbs incoming damage, recovering 25% as HEAT (Coolant). Your ship sustains 25% of absorbed DMG.",
+  Trident: "Triple burst weapon that fires 3 bolts in a 40 degree fan.",
+  Mine: "Deploys an explosive mine at a target location.",
+  RadixR4: "Emits a cosmic shockwave that damages everything in its path. Only evasion (dive/soar) or shields can protect against it. Cannot be ricocheted.",
+  "Dual-BB": "Twin Rapid-Fire 20mm Cannons. Fires 2 projectiles simultaneously from each wing-tip.",
+};

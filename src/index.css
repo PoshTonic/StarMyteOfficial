@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 40% 10%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 40% 10%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 30% 18%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 260 60% 55%;
+    --accent-foreground: 210 40% 96%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 20%;
+    --input: 222 30% 18%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 222 40% 8%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 199 89% 48%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 30% 14%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 222 30% 20%;
+    --sidebar-ring: 199 89% 48%;
+
+    /* Custom game tokens */
+    --glow-primary: 199 89% 48%;
+    --glow-accent: 260 60% 55%;
+    --hp-bar: 0 72% 51%;
+    --fuel-bar: 199 89% 48%;
+    --heat-bar: 30 90% 50%;
+    --success: 142 71% 45%;
+    --gradient-space: linear-gradient(135deg, hsl(222 47% 6%) 0%, hsl(240 30% 12%) 50%, hsl(222 47% 6%) 100%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  input, textarea, select, [contenteditable] {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: default;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Rajdhani', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+/* Star field animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px hsl(199 89% 48% / 0.3); }
+  50% { box-shadow: 0 0 20px hsl(199 89% 48% / 0.6), 0 0 40px hsl(199 89% 48% / 0.2); }
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.glass-panel {
+  @apply bg-card/60 backdrop-blur-md border border-border/50 rounded-xl;
+}
+
+.glow-text {
+  text-shadow: 0 0 10px hsl(199 89% 48% / 0.5), 0 0 20px hsl(199 89% 48% / 0.3);
+}
+
+/* Pure CSS starfield for Auth page */
+.stars-layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+}
+
+.stars-small {
+  background-image:
+    radial-gradient(1px 1px at 50px 80px, hsl(199 89% 80% / 0.6), transparent),
+    radial-gradient(1px 1px at 150px 30px, hsl(199 89% 80% / 0.5), transparent),
+    radial-gradient(1px 1px at 250px 120px, hsl(199 89% 80% / 0.4), transparent),
+    radial-gradient(1px 1px at 80px 200px, hsl(199 89% 80% / 0.6), transparent),
+    radial-gradient(1px 1px at 300px 160px, hsl(199 89% 80% / 0.3), transparent),
+    radial-gradient(1px 1px at 180px 250px, hsl(199 89% 80% / 0.5), transparent);
+  background-size: 350px 300px;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.stars-medium {
+  background-image:
+    radial-gradient(1.5px 1.5px at 100px 150px, hsl(199 89% 80% / 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 280px 60px, hsl(199 89% 80% / 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 40px 300px, hsl(199 89% 80% / 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 220px 220px, hsl(199 89% 80% / 0.4), transparent);
+  background-size: 400px 350px;
+  animation: twinkle 5s ease-in-out infinite 1s;
+}
+
+.stars-large {
+  background-image:
+    radial-gradient(2px 2px at 200px 100px, hsl(199 89% 80% / 0.8), transparent),
+    radial-gradient(2px 2px at 60px 250px, hsl(199 89% 80% / 0.6), transparent),
+    radial-gradient(2px 2px at 320px 300px, hsl(199 89% 80% / 0.5), transparent);
+  background-size: 450px 400px;
+  animation: twinkle 6s ease-in-out infinite 2s;
+}
+
+@keyframes orbFlicker {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes starMergeGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px var(--glow-color), 0 0 16px var(--glow-color);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 18px var(--glow-color), 0 0 32px var(--glow-color), 0 0 48px var(--glow-color-light);
+    transform: scale(1.1);
+  }
+}
+
+.star-merge-glow {
+  animation: starMergeGlow 0.8s ease-in-out infinite !important;
+}
+
+@keyframes flamePulse {
+  0%, 100% {
+    transform: scaleY(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scaleY(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes vsAppear {
+  from { opacity: 0; transform: scale(0.3); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes burstOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(2); }
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateX(-100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pageExit {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100%); }
+}
+
+@keyframes pageEnterFromLeft {
+  from { opacity: 0; transform: translateX(-100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pageEnterFromRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pageExitLeft {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-100%); }
+}
+
+@keyframes pageExitRight {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100%); }
+}
+
+.animate-page-enter {
+  animation: pageEnter 0.75s ease-out both;
+}
+
+.animate-page-exit {
+  animation: pageExit 0.75s ease-in both;
+}
+
+.animate-page-enter-from-left {
+  animation: pageEnterFromLeft 0.75s ease-out both;
+}
+
+.animate-page-enter-from-right {
+  animation: pageEnterFromRight 0.75s ease-out both;
+}
+
+.animate-page-exit-left {
+  animation: pageExitLeft 0.75s ease-in both;
+}
+
+.animate-page-exit-right {
+  animation: pageExitRight 0.75s ease-in both;
+}
+
+/* ── Intro animations (splash → homepage) ── */
+@keyframes introSlideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes introSlideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes introFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Header slides down */
+.intro-slide-down {
+  animation: introSlideDown 0.25s ease-out both;
+}
+
+/* Footer slides up */
+.intro-slide-up {
+  animation: introSlideUp 0.25s ease-out both;
+}
+
+/* Fade-in with delay variants */
+.intro-fade-in {
+  opacity: 0;
+  animation: introFadeIn 0.5s ease-out forwards;
+}
+
+.intro-delay-250 { animation-delay: 0.25s; }
+.intro-delay-750 { animation-delay: 0.75s; }
+.intro-delay-2250 { animation-delay: 2.25s; }
+
+/* Ship slides up from bottom (bakes in centering transforms) */
+@keyframes introSlideUpShip {
+  from { transform: translate(-50%, 100%); opacity: 0; }
+  to   { transform: translate(-50%, -50%); opacity: 1; }
+}
+
+.intro-slide-up-ship {
+  opacity: 0;
+  animation: introSlideUpShip 1s ease-out 1.25s forwards;
+}
+
+/* Battle button slides up (bakes in centering transforms) */
+@keyframes introSlideUpBattle {
+  from { transform: translate(-50%, 100vh); opacity: 0; }
+  to   { transform: translate(-50%, 50%); opacity: 1; }
+}
+
+.intro-slide-up-battle {
+  opacity: 0;
+  animation: introSlideUpBattle 0.5s ease-out 2.75s forwards;
+}
+
+/* Gold light sweep for VIP elements */
+@keyframes lightSweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.gold-sweep-btn {
+  background: linear-gradient(
+    110deg,
+    hsl(45 100% 45%) 0%,
+    hsl(50 100% 55%) 30%,
+    hsl(45 100% 70%) 50%,
+    hsl(50 100% 55%) 70%,
+    hsl(45 100% 45%) 100%
+  );
+  background-size: 200% 100%;
+  animation: lightSweep 3s linear infinite;
+}
+
+.gold-sweep-border {
+  border: 2px solid hsl(45 100% 55%);
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-sweep-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    hsl(45 100% 70% / 0.2) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: lightSweep 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes emote-radial-in {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ── Ship shake easter egg ── */
+@keyframes shipShake {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(calc(var(--shake-radius) * 0.5), calc(var(--shake-radius) * -0.3)); }
+  20% { transform: translate(calc(var(--shake-radius) * -0.4), calc(var(--shake-radius) * 0.5)); }
+  30% { transform: translate(calc(var(--shake-radius) * 0.6), calc(var(--shake-radius) * 0.2)); }
+  40% { transform: translate(calc(var(--shake-radius) * -0.3), calc(var(--shake-radius) * -0.6)); }
+  50% { transform: translate(calc(var(--shake-radius) * 0.5), calc(var(--shake-radius) * 0.4)); }
+  60% { transform: translate(calc(var(--shake-radius) * -0.6), calc(var(--shake-radius) * -0.2)); }
+  70% { transform: translate(calc(var(--shake-radius) * 0.3), calc(var(--shake-radius) * 0.6)); }
+  80% { transform: translate(calc(var(--shake-radius) * -0.5), calc(var(--shake-radius) * -0.4)); }
+  90% { transform: translate(calc(var(--shake-radius) * 0.4), calc(var(--shake-radius) * 0.3)); }
+}
+
+.ship-shake {
+  animation: shipShake var(--shake-duration, 0.5s) ease-in-out;
+}
+
+/* ── ZZ11 reveal animation ── */
+@keyframes zz11Reveal {
+  0% { transform: scale(1); opacity: 1; }
+  60% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.15) translateY(60vh); opacity: 0; }
+}
+
+.zz11-reveal {
+  animation: zz11Reveal 2.5s ease-in-out forwards;
+}
+
+/* ── Nav recoil animation ── */
+@keyframes navRecoil {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.3); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.nav-recoil {
+  animation: navRecoil 0.4s ease-out;
+}
